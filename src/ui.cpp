@@ -1,28 +1,67 @@
 #include "ui.h"
 #include "display.h"
 
-void showHomeScreen(const char* title, const char* icon)
+static unsigned long feedbackStartTime = 0;
+static bool showingFeedback = false;
+
+// -----------------------------
+// Private Functions
+// -----------------------------
+static void drawHome()
 {
     clearDisplay();
 
-    // Icon
-    drawCenteredText(22, icon);
-
-    // Profile Name
-    drawCenteredText(50, title);
+    drawCenteredText(22, "</>");
+    drawCenteredText(50, "Coding");
 
     updateDisplay();
 }
 
-void showFeedbackScreen(const char* title, const char* icon)
+static void drawFeedback()
 {
     clearDisplay();
 
-    // Icon
-    drawCenteredText(22, icon);
-
-    // Macro Name
-    drawCenteredText(50, title);
+    drawCenteredText(22, "[]");
+    drawCenteredText(50, "ChatGPT");
 
     updateDisplay();
+}
+
+// -----------------------------
+// Public Functions
+// -----------------------------
+void uiInit()
+{
+    drawHome();
+}
+
+void uiHandleButton(ButtonEvent event)
+{
+    switch (event)
+    {
+        case BUTTON_1:
+
+            drawFeedback();
+
+            showingFeedback = true;
+            feedbackStartTime = millis();
+
+            break;
+
+        default:
+            break;
+    }
+}
+
+void uiUpdate()
+{
+    if (showingFeedback)
+    {
+        if (millis() - feedbackStartTime >= 500)
+        {
+            showingFeedback = false;
+
+            drawHome();
+        }
+    }
 }

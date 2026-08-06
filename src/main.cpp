@@ -12,30 +12,17 @@ void setup()
 
     playBootSequence();
 
-    showHomeScreen("Coding", "</>");
+    uiInit();
 }
 
 void loop()
 {
-    switch (getButtonEvent())
+    ButtonEvent event = getButtonEvent();
+
+    if (event != BUTTON_NONE)
     {
-        case BUTTON_1:
-
-            showFeedbackScreen(
-                "ChatGPT",
-                "[]"
-            );
-
-            delay(500);
-
-            showHomeScreen(
-                "Coding",
-                "</>"
-            );
-
-            break;
-
-        default:
-            break;
+        uiHandleButton(event);
     }
+
+    uiUpdate();
 }

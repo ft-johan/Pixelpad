@@ -1,5 +1,10 @@
 #pragma once
 
-void showHomeScreen(const char* title, const char* icon);
+#include <Arduino.h>
+#include "buttons.h"
 
-void showFeedbackScreen(const char* title, const char* icon);
+void uiInit();
+
+void uiHandleButton(ButtonEvent event);
+
+void uiUpdate();
