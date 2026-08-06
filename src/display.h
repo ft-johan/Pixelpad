@@ -2,10 +2,14 @@
 
 void initDisplay();
 
-void showBootScreen();
+void clearDisplay();
 
-void showHomeScreen(const char* profile);
+void updateDisplay();
 
-void showMacroFeedback(const char* action);
+void drawIcon(int x,
+              int y,
+              const char* icon);
 
-void drawCenteredText(int y, const char* text);
+void drawTitle(int x,
+               int y,
+               const char* text);

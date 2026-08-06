@@ -1,7 +1,6 @@
-#include <Arduino.h>
-
 #include "display.h"
 #include "buttons.h"
+#include "ui.h"
 
 void setup()
 {
@@ -9,28 +8,30 @@ void setup()
 
     initButtons();
 
-    showBootScreen();
-
-    delay(1500);
-
-    showHomeScreen("Coding");
+    showHomeScreen("Coding","</>");
 }
 
 void loop()
 {
     switch(getButtonEvent())
-{
-    case BUTTON_1:
+    {
+        case BUTTON_1:
 
-        showMacroFeedback("ChatGPT");
+            showFeedbackScreen(
+                "ChatGPT",
+                "[]"
+            );
 
-        delay(500);
+            delay(500);
 
-        showHomeScreen("Coding");
+            showHomeScreen(
+                "Coding",
+                "</>"
+            );
 
-        break;
+            break;
 
-    default:
-        break;
-}
+        default:
+            break;
+    }
 }

@@ -1,4 +1,3 @@
-
 #include "display.h"
 
 #include <Wire.h>
@@ -14,54 +13,32 @@ void initDisplay()
     Wire.begin(21,22);
 
     display.begin();
-
-    display.setFont(u8g2_font_ncenB14_tr);
 }
-void drawCenteredText(int y, const char* text)
-{
-    int width = display.getStrWidth(text);
-    int x = (128 - width) / 2;
 
-    display.drawStr(x, y, text);
-}
-void showBootScreen()
+void clearDisplay()
 {
     display.clearBuffer();
+}
 
-    drawCenteredText(35, "PixelPad");
-
+void updateDisplay()
+{
     display.sendBuffer();
 }
-void showHomeScreen(const char* profile)
+
+void drawIcon(int x,
+              int y,
+              const char* icon)
 {
-    display.clearBuffer();
+    display.setFont(u8g2_font_8x13_tf);
 
-    // Title
-    display.setFont(u8g2_font_6x13_tf);
-    drawCenteredText(10, "PixelPad");
-
-    // Divider
-    display.drawHLine(0, 15, 128);
-
-    // Main Text
-    display.setFont(u8g2_font_ncenB14_tr);
-    drawCenteredText(38, profile);
-
-    // Status
-    display.setFont(u8g2_font_6x10_tf);
-    drawCenteredText(60, "Ready");
-
-    display.sendBuffer();
+    display.drawStr(x,y,icon);
 }
-void showMacroFeedback(const char* action)
+
+void drawTitle(int x,
+               int y,
+               const char* text)
 {
-    display.clearBuffer();
+    display.setFont(u8g2_font_logisoso20_tf);
 
-    display.setFont(u8g2_font_ncenB14_tr);
-    drawCenteredText(28, action);
-
-    display.setFont(u8g2_font_6x10_tf);
-    drawCenteredText(52, "Launching...");
-
-    display.sendBuffer();
+    display.drawStr(x,y,text);
 }
