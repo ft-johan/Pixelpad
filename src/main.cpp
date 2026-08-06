@@ -1,6 +1,7 @@
 #include "display.h"
 #include "buttons.h"
 #include "ui.h"
+#include "animations.h"
 
 void setup()
 {
@@ -8,18 +9,24 @@ void setup()
 
     initButtons();
 
-    showHomeScreen("Coding","</>");
+    startBootAnimation();
 }
 
 void loop()
 {
+    if (!bootAnimationFinished())
+    {
+        updateBootAnimation();
+        return;
+    }
+
     switch(getButtonEvent())
     {
         case BUTTON_1:
 
             showFeedbackScreen(
                 "ChatGPT",
-                "[]"
+                "</>"
             );
 
             delay(500);

@@ -5,3 +5,8 @@ void showHomeScreen(const char* title,
 
 void showFeedbackScreen(const char* title,
                         const char* icon);
+void showBootLogo();
+
+void showLoadingScreen(int progress);
+
+void showReadyScreen();
