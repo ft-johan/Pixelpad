@@ -5,6 +5,7 @@
 enum ButtonEvent
 {
     BUTTON_NONE,
+
     BUTTON_1,
     BUTTON_2,
     BUTTON_3,
@@ -14,6 +15,7 @@ enum ButtonEvent
     BUTTON_7,
     BUTTON_8,
     BUTTON_9,
+
     BUTTON_FN
 };
 

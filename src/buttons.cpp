@@ -1,9 +1,21 @@
+#include <Arduino.h>
+
 #include "buttons.h"
 
+// -------------------------
+// Pin Definitions
+// -------------------------
 const uint8_t BTN1_PIN = 4;
 
-// Debounce time
+// -------------------------
+// Debounce
+// -------------------------
 const unsigned long DEBOUNCE_DELAY = 25;
+
+void initButtons()
+{
+    pinMode(BTN1_PIN, INPUT_PULLUP);
+}
 
 ButtonEvent getButtonEvent()
 {
@@ -21,13 +33,14 @@ ButtonEvent getButtonEvent()
 
     previousReading = reading;
 
-    // Has it stayed stable long enough?
+    // Stable long enough?
     if ((millis() - lastDebounceTime) > DEBOUNCE_DELAY)
     {
         if (reading != stableState)
         {
             stableState = reading;
 
+            // Button Pressed
             if (stableState == LOW)
             {
                 return BUTTON_1;
@@ -36,9 +49,4 @@ ButtonEvent getButtonEvent()
     }
 
     return BUTTON_NONE;
-}
-
-void initButtons()
-{
-    pinMode(BTN1_PIN, INPUT_PULLUP);
 }

@@ -1,26 +1,28 @@
 #include "ui.h"
 #include "display.h"
 
-void showHomeScreen(const char* title,
-                    const char* icon)
+void showHomeScreen(const char* title, const char* icon)
 {
     clearDisplay();
 
-    drawIcon(14, 38, icon);
+    // Icon
+    drawCenteredText(22, icon);
 
-    drawTitle(44, 40, title);
+    // Profile Name
+    drawCenteredText(50, title);
 
     updateDisplay();
 }
 
-void showFeedbackScreen(const char* title,
-                        const char* icon)
+void showFeedbackScreen(const char* title, const char* icon)
 {
     clearDisplay();
 
-    drawIcon(14, 38, icon);
+    // Icon
+    drawCenteredText(22, icon);
 
-    drawTitle(44, 40, title);
+    // Macro Name
+    drawCenteredText(50, title);
 
     updateDisplay();
 }

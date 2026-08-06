@@ -1,32 +1,29 @@
+#include <Arduino.h>
+
 #include "display.h"
 #include "buttons.h"
+#include "boot.h"
 #include "ui.h"
-#include "animations.h"
 
 void setup()
 {
     initDisplay();
-
     initButtons();
 
-    startBootAnimation();
+    playBootSequence();
+
+    showHomeScreen("Coding", "</>");
 }
 
 void loop()
 {
-    if (!bootAnimationFinished())
-    {
-        updateBootAnimation();
-        return;
-    }
-
-    switch(getButtonEvent())
+    switch (getButtonEvent())
     {
         case BUTTON_1:
 
             showFeedbackScreen(
                 "ChatGPT",
-                "</>"
+                "[]"
             );
 
             delay(500);

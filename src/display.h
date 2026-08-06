@@ -6,10 +6,8 @@ void clearDisplay();
 
 void updateDisplay();
 
-void drawIcon(int x,
-              int y,
-              const char* icon);
+void drawCenteredText(int y, const char* text);
 
-void drawTitle(int x,
-               int y,
-               const char* text);
+void drawSmallCenteredAt(int y, const char* text);
+
+void drawProgressBar(int blocks);
